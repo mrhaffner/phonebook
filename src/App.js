@@ -18,9 +18,17 @@ const App = () => {
 
   const submitPerson = (e) => {
     e.preventDefault();
-    if (persons.filter(person => person.name === newName).length) {
-      alert(`${newName} is already added to phonebook`)
-
+    const person = persons.filter(person => person.name === newName)[0]
+    if (person) {
+      if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
+        console.log('ehhhh')
+        const newObj = { ...person, number: newNumber }
+        personService
+          .update(person.id, newObj)
+          .then(returnedPerson => {
+            setPersons(persons.map(person => person.id !== returnedPerson.id ? person : returnedPerson))
+          })
+      }
     } else {
       const newObj = { name: newName, number: newNumber };
       personService

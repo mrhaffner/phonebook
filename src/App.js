@@ -30,15 +30,15 @@ const App = () => {
           .update(person.id, newObj)
           .then(returnedPerson => {
             setPersons(persons.map(person => person.id !== returnedPerson.id ? person : returnedPerson))
-            setNewName('');
-            setNewNumber('');
-            setMessageClass(true)
+            // setNewName('');
+            // setNewNumber('');
+            // setMessageClass(true)
             setSubmitMessage(
               `Updated ${returnedPerson.name}'s phone number`
             )
-            setTimeout(() => {
-              setSubmitMessage(null)
-            }, 5000)
+            // setTimeout(() => {
+            //   setSubmitMessage(null)
+            // }, 5000)
           })
           .catch(error => {
             setMessageClass(false)
@@ -46,9 +46,9 @@ const App = () => {
             setSubmitMessage(
               `Information of ${person.name} has already been removed from server`
             )
-            setTimeout(() => {
-              setSubmitMessage(null)
-            }, 5000)
+            // setTimeout(() => {
+            //   setSubmitMessage(null)
+            // }, 5000)
           })
       }
     } else {
@@ -57,17 +57,28 @@ const App = () => {
         .create(newObj)
         .then(returnedPerson => {
           setPersons(persons.concat(returnedPerson))
-          setNewName('');
-          setNewNumber('');
-          setMessageClass(true)
+          // setNewName('');
+          // setNewNumber('');
+          // setMessageClass(true)
           setSubmitMessage(
             `Added ${returnedPerson.name}`
           )
-          setTimeout(() => {
-            setSubmitMessage(null)
-          }, 5000)
+          // setTimeout(() => {
+          //   setSubmitMessage(null)
+          // }, 5000)
         })
+        // .catch(err => {
+        //   console.log(err)
+        //   setMessageClass(false)
+        //   setSubmitMessage(err)
+        // })
     }
+    setNewName('');
+    setNewNumber('');
+    setMessageClass(true)
+    setTimeout(() => {
+      setSubmitMessage(null)
+    }, 5000)
   }
 
   const removePerson = id => (e) => {

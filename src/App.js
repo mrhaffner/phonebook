@@ -67,11 +67,11 @@ const App = () => {
           //   setSubmitMessage(null)
           // }, 5000)
         })
-        // .catch(err => {
-        //   console.log(err)
-        //   setMessageClass(false)
-        //   setSubmitMessage(err)
-        // })
+        .catch(err => {
+          console.log(err.response.data.error)
+          setMessageClass(false)
+          setSubmitMessage(err.response.data.error)
+        })
     }
     setNewName('');
     setNewNumber('');
